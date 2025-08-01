@@ -28,4 +28,5 @@ def launch_browser(url):
     service = Service(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=service, options=options)
     driver.get(url)
+    print("Browser launched and navigated to:", url)
     return driver
