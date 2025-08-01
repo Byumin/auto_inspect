@@ -6,8 +6,8 @@ import time
 import sys
 import os
 
-script_dir = os.path.dirname(os.path.abspath(sys.argv[0]))
-os.chdir(script_dir) # 현재 작업 디렉토리를 스크립트 디렉토리로 변경
+# script_dir = os.path.dirname(os.path.abspath(sys.argv[0]))
+# os.chdir(script_dir) # 현재 작업 디렉토리를 스크립트 디렉토리로 변경
 
 st.set_page_config(page_title="자동화 파이프라인", layout="wide")
 st.title("🔧 사용자 정의 자동화 파이프라인")
