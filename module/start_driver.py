@@ -28,7 +28,7 @@ def launch_browser(url):
     options.add_argument("--window-size=1920,1080")
     options.add_argument("--remote-debugging-port=9222")
     #options.add_experimental_option("detach", True)
-    service = Service(ChromeDriverManager().install())
+    service = Service(ChromeDriverManager(driver_version="138.0.7240.0").install())
     driver = webdriver.Chrome(service=service, options=options)
     driver.get(url)
     print("Browser launched and navigated to:", url)
