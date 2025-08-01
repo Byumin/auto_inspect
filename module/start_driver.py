@@ -8,6 +8,9 @@ CHROMIUM_PATH = "/usr/bin/chromium-browser"  # 서버에 설치된 chromium-brow
 def start_browser():
     options = webdriver.ChromeOptions()
     options.binary_location = CHROMIUM_PATH  # 서버에 설치된 chromium-browser 경로 설정
+    options.add_argument("--headless=new") # 헤드리스 모드로 실행
+    options.add_argument("--no-sandbox") # 샌드박스 모드 비활성화
+    options.add_argument("--disable-dev-shm-usage") # 공유 메모리 사용 비활성화
     options.add_experimental_option("detach", True)  # 브라우저 자동 종료 방지
     service = Service(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=service, options=options)
@@ -20,6 +23,9 @@ def control_browser(driver, url) :
 def launch_browser(url):
     options = webdriver.ChromeOptions()
     options.binary_location = CHROMIUM_PATH  # 서버에 설치된 chromium-browser 경로 설정
+    options.add_argument("--headless=new") # 헤드리스 모드로 실행
+    options.add_argument("--no-sandbox") # 샌드박스 모드 비활성화
+    options.add_argument("--disable-dev-shm-usage") # 공유 메모리 사용 비활성화
     options.add_experimental_option("detach", True)  # 브라우저 자동 종료 방지
     service = Service(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=service, options=options)
