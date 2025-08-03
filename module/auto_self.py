@@ -73,5 +73,5 @@ def run(context):
     except Exception as e:
         print(f"자기보고 입력 모듈 실행 중 오류 발생: {e}")
         st.error(f"자기보고 입력 모듈 실행 중 오류 발생: {e}")
-        error_with_screenshot(driver, error_message)
+        error_with_screenshot(driver, e)
         st.stop()
