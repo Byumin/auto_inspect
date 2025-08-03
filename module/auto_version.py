@@ -1,5 +1,5 @@
 from selenium.webdriver.common.by import By
-from module.error_handler import error_with_screenshot
+from module.error_with_screenshot import error_with_screenshot
 
 def run(context):
     try:

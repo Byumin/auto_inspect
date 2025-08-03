@@ -1,6 +1,7 @@
 from selenium.webdriver.common.by import By
 import streamlit as st
 from selenium.webdriver.common.action_chains import ActionChains
+from module.error_with_screenshot import error_with_screenshot
 # from itertools import islice
 
 def run(context):
@@ -72,4 +73,5 @@ def run(context):
     except Exception as e:
         print(f"자기보고 입력 모듈 실행 중 오류 발생: {e}")
         st.error(f"자기보고 입력 모듈 실행 중 오류 발생: {e}")
+        error_with_screenshot(driver, error_message)
         st.stop()
