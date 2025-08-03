@@ -197,12 +197,23 @@ with tabs[2]:
 with tabs[3]:
     st.header("4. 실행 및 결과")
     url = st.text_input("자동 입력에 사용할 URL을 입력하세요")
+    id = st.text_input("아이디를 입력하세요", value="pretest3", key="user_id")
+    pw = st.text_input("비밀번호를 입력하세요", type="password", value="pretest3!", key="user_pw")
+    psy_name = st.text_input("검사 이름을 입력하세요", value="심리 검사 이름", key="psy_name")
+
     if st.button("드라이버 실행"):
-        if url:
+        if all([url, id, pw, psy_name]):
             st.session_state["url"] = url
             from start_driver import launch_browser
             st.session_state['driver'] = launch_browser(url)
+            from start_driver import login_and_start_inspection
+            driver = st.session_state['driver']
+            login_and_start_inspection(driver, id, pw, psy_name)
             st.success("드라이버가 실행되었습니다.")
+        else:
+            st.warning("모든 필드를 입력하세요.")
+
+            
 
     if st.button("자동화 실행"):
         if st.session_state.get('driver') is None:
