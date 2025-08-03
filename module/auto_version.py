@@ -1,4 +1,5 @@
 from selenium.webdriver.common.by import By
+from module.error_handler import error_with_screenshot
 
 def run(context):
     try:
@@ -27,6 +28,9 @@ def run(context):
         next_button = driver.find_element(By.XPATH, version_next_button_xpath)
         next_button.click()  # 다음 버튼 클릭
         print("다음 버튼 클릭 완료")  # Debugging line
-    except KeyError as e:
-        print(f"KeyError: {e} - context에 필요한 키가 없습니다.")
+
+    except Exception as e:
+        error_message = f"버전 선택 모듈 실행 중 오류 발생: {e}"
+        print(error_message)  # Debugging line
+        error_with_screenshot(driver, error_message)
         return

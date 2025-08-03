@@ -255,7 +255,9 @@ with tabs[3]:
 
                 # 카운터 초기화
                 specific_alert_counter = 0
-                
+
+                print(f"===================실행 중인 행 인덱스: {row_idx}====================")  # Debugging line
+
                 # 모듈 순서대로 실행
                 for module_name in st.session_state["module_flow"]:
                     time.sleep(1)  # 모듈 실행 간 잠시 대기

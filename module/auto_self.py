@@ -1,7 +1,7 @@
 from selenium.webdriver.common.by import By
 import streamlit as st
 from selenium.webdriver.common.action_chains import ActionChains
-from itertools import islice
+# from itertools import islice
 
 def run(context):
     try:
