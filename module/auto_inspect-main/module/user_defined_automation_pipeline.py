@@ -5,11 +5,6 @@ from selenium.webdriver.common.by import By
 import time
 import sys
 import os
-import requests
-import zipfile
-import tempfile
-import tkinter as tk
-from tkinter import filedialog
 
 # script_dir = os.path.dirname(os.path.abspath(sys.argv[0]))
 # os.chdir(script_dir) # 현재 작업 디렉토리를 스크립트 디렉토리로 변경
@@ -18,7 +13,7 @@ st.set_page_config(page_title="자동화 파이프라인", layout="wide")
 st.title("🔧 사용자 정의 자동화 파이프라인")
 
 # 탭 구성
-tabs = st.tabs(["1️⃣ 파일 업로드", "2️⃣ 인적사항/설정", "3️⃣ 모듈 순서 지정", "4️⃣ 실행/결과", "5️⃣ 로컬 실행"])
+tabs = st.tabs(["1️⃣ 파일 업로드", "2️⃣ 인적사항/설정", "3️⃣ 모듈 순서 지정", "4️⃣ 실행/결과"])
 
 # ---------------------- [1] 파일 업로드 ---------------------- #
 with tabs[0]:
@@ -288,52 +283,6 @@ with tabs[3]:
                         st.stop()
                 time.sleep(1)
             st.success("모든 모듈이 성공적으로 실행되었습니다!")
-with tabs[4]:
-    st.header("5. 로컬 실행")
-    st.markdown("Streamlit이 제대로 작동하지 않거나, 직접 실행하고 싶을 경우 소스 코드를 내려받아 로컬에서 실행할 수 있습니다.")
-
-    # 🔽 GitHub zip 다운로드 함수 (경로 자동 지정)
-    def download_and_extract_zip(repo_url):
-        try:
-            if repo_url.endswith(".git"):
-                repo_url = repo_url[:-4]
-
-            zip_url = repo_url + "/archive/refs/heads/main.zip"
-            repo_name = repo_url.split("/")[-1]
-            save_dir = os.path.join(os.getcwd(), f"{repo_name}-main")  # 현재 폴더 기준 저장
-
-            zip_path = os.path.join(tempfile.gettempdir(), f"{repo_name}.zip")
-
-            # 다운로드
-            with requests.get(zip_url, stream=True) as r:
-                r.raise_for_status()
-                with open(zip_path, 'wb') as f:
-                    for chunk in r.iter_content(chunk_size=8192):
-                        f.write(chunk)
-
-            # 압축 해제
-            with zipfile.ZipFile(zip_path, 'r') as zip_ref:
-                zip_ref.extractall(os.getcwd())  # 현재 경로에 압축 해제
-
-            st.success(f"📦 다운로드 완료!\n\n→ `{save_dir}` 폴더가 생성되었습니다.")
-            st.info("로컬에서 실행하려면, 아래 명령어를 터미널에 입력하세요:")
-            st.code(f"""
-cd {repo_name}-main
-pip install -r requirements.txt
-streamlit run user_defined_automation_pipeline.py
-""", language="bash")
-
-        except Exception as e:
-            st.error(f"❌ 다운로드 중 오류 발생: {e}")
-
-    # UI
-    st.subheader("🔻 GitHub 소스코드 ZIP 다운로드")
-    repo_url = st.text_input("GitHub 레포지토리 주소", "https://github.com/Byumin/auto_inspect")
-
-    if st.button("소스코드 다운로드 및 자동 압축 해제"):
-        download_and_extract_zip(repo_url)
-
-
 
 # streamlit run c:/Users/USER/peer/검수/user_xpath_selenium/user_defined_automation_pipeline.py
 # streamlit run /Users/mac/insight_/peer/검수/user_xpath_selenium/user_defined_automation_pipeline.py

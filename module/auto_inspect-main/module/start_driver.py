@@ -42,9 +42,6 @@ def launch_browser(url):
         options.add_argument("--window-size=1920,1080")
         options.add_argument("--remote-debugging-port=9222")
         print("📍 Linux 서버 환경에서 Headless 브라우저 실행")
-    elif system_platform == "Windows":  # Windows
-        options.add_experimental_option("detach", True)
-        print("📍 Windows 환경에서 브라우저 실행")
 
     else:
         raise EnvironmentError(f"Unsupported platform: {system_platform}.")
