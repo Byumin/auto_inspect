@@ -1,5 +1,7 @@
 streamlit
 selenium
+webdriver-manager
 pandas
 openpyxl
-webdriver-manager
+pillow
+requests
