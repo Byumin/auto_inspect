@@ -1,5 +1,6 @@
+import traceback
 from selenium.webdriver.common.by import By
-from module.error_with_screenshot import error_with_screenshot
+from error_with_screenshot import error_with_screenshot
 
 def run(context):
     try:
@@ -32,5 +33,6 @@ def run(context):
     except Exception as e:
         error_message = f"버전 선택 모듈 실행 중 오류 발생: {e}"
         print(error_message)  # Debugging line
+        traceback.print_exc()
         error_with_screenshot(driver, error_message)
         return
